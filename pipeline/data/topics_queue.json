@@ -1,20 +1,6 @@
 {
   "topics": [
     {
-      "id": "1d227af6-a4ad-47bf-bb03-e343370a784c",
-      "status": "queued",
-      "created_at": "2026-05-28T10:06:27.667055+00:00",
-      "keyword": "convertisseur 12v 220v pur sinus vanlife",
-      "type": "comparatif",
-      "category": "energie",
-      "products_to_compare": [
-        "Victron Phoenix 1200",
-        "Renogy 2000W",
-        "EcoFlow 1800W"
-      ],
-      "priority": 2
-    },
-    {
       "id": "73739d26-c45b-45a4-8c32-e319947efc19",
       "status": "queued",
       "created_at": "2026-05-28T10:06:27.667060+00:00",
@@ -23,20 +9,6 @@
       "category": "energie",
       "product_tested": "EcoFlow Delta 2",
       "priority": 3
-    },
-    {
-      "id": "1483b239-5ff6-4454-b5c1-4553f31c4165",
-      "status": "queued",
-      "created_at": "2026-05-28T10:06:27.667068+00:00",
-      "keyword": "meilleur frigo 12v compresseur 40 litres",
-      "type": "comparatif",
-      "category": "cuisine",
-      "products_to_compare": [
-        "Dometic CFX3 45",
-        "ARB Classic II 47",
-        "Engel MR040F"
-      ],
-      "priority": 1
     },
     {
       "id": "5d4e835c-27c2-4735-b940-d259b9b36d42",
@@ -49,13 +21,14 @@
     },
     {
       "id": "fc9fadb0-d0e7-4d3f-a3af-f1a8ae79281a",
-      "status": "queued",
+      "status": "error",
       "created_at": "2026-05-28T10:06:27.667076+00:00",
       "keyword": "chauffage diesel autoterm air 2d test",
       "type": "test_produit",
       "category": "confort",
       "product_tested": "Autoterm Air 2D",
-      "priority": 1
+      "priority": 1,
+      "updated_at": "2026-05-28T13:49:19.352964+00:00"
     },
     {
       "id": "4bcb3366-9f66-4b4e-a904-d1527cbdb675",

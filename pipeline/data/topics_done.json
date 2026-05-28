@@ -16,6 +16,40 @@
       "updated_at": "2026-05-28T10:06:48.458784+00:00",
       "published_at": "2026-05-28T10:06:48.461472+00:00",
       "article_url": "None/frontend/content/articles/meilleure-batterie-lithium-200ah-vanlife.md"
+    },
+    {
+      "id": "1483b239-5ff6-4454-b5c1-4553f31c4165",
+      "status": "published",
+      "created_at": "2026-05-28T10:06:27.667068+00:00",
+      "keyword": "meilleur frigo 12v compresseur 40 litres",
+      "type": "comparatif",
+      "category": "cuisine",
+      "products_to_compare": [
+        "Dometic CFX3 45",
+        "ARB Classic II 47",
+        "Engel MR040F"
+      ],
+      "priority": 1,
+      "updated_at": "2026-05-28T13:44:56.847910+00:00",
+      "published_at": "2026-05-28T13:45:58.625588+00:00",
+      "article_url": "/Users/vaahidra/vanlife-comparateur/frontend/content/articles/comparatif-frigo-12v-compresseur-40l-dometic-arb-engel.md"
+    },
+    {
+      "id": "1d227af6-a4ad-47bf-bb03-e343370a784c",
+      "status": "published",
+      "created_at": "2026-05-28T10:06:27.667055+00:00",
+      "keyword": "convertisseur 12v 220v pur sinus vanlife",
+      "type": "comparatif",
+      "category": "energie",
+      "products_to_compare": [
+        "Victron Phoenix 1200",
+        "Renogy 2000W",
+        "EcoFlow 1800W"
+      ],
+      "priority": 2,
+      "updated_at": "2026-05-28T15:24:50.668044+00:00",
+      "published_at": "2026-05-28T15:25:32.292806+00:00",
+      "article_url": "/Users/vaahidra/vanlife-comparateur/frontend/content/articles/convertisseur-pur-sinus-12v-220v-vanlife-comparatif.md"
     }
   ]
 }

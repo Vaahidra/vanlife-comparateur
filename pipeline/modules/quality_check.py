@@ -32,6 +32,20 @@ AI_MARKERS = [
     "à noter que",
 ]
 
+# Patterns d'anecdotes 1re personne — INTERDITS car user n'a pas d'expérience vanlife.
+# Si détectés → article passe en pending_review (failure bloquant).
+FIRST_PERSON_ANECDOTE_PATTERNS = [
+    r"\bj'ai (testé|vu|essayé|installé|monté|acheté|utilisé|eu)\b",
+    r"\bj'ai eu (l'occasion|la chance|l'opportunité)\b",
+    r"\bdans mon (van|fourgon|aménagement|installation)\b",
+    r"\bsur mon (van|fourgon|installation|setup)\b",
+    r"\b(mon|j'ai un) (ami|pote|frère|cousin|père|voisin)\b",
+    r"\bpersonnellement, j[e']\b",
+    r"\bd'expérience,?\b",
+    r"\bje me souviens\b",
+    r"\bquand j[e']\b",
+]
+
 
 @dataclass
 class CheckResult:
@@ -92,6 +106,15 @@ def run_all_checks(article: dict, article_type: ArticleType) -> CheckResult:
     metrics["ai_markers"] = ai_count
     if ai_count > 4:
         warnings.append(f"Trop de markers IA: {ai_count} (max 4)")
+
+    # Anecdotes 1re personne (CRITIQUE EEAT — user n'a pas d'expérience vanlife)
+    anecdotes = detect_first_person_anecdotes(full_text)
+    metrics["anecdote_count"] = len(anecdotes)
+    if anecdotes:
+        failures.append(
+            f"Anecdotes 1re personne interdites ({len(anecdotes)} occurrences) — "
+            f"viole EEAT honnêteté. Exemples: {anecdotes[:3]}"
+        )
 
     # Tableaux
     table_count = full_text.count("|---|") + full_text.count("|--|")
@@ -156,3 +179,20 @@ def check_meta_description(meta: str, max_chars: int = 160) -> tuple[bool, str]:
     if len(meta) > max_chars:
         return False, f"Meta trop longue: {len(meta)} chars (max {max_chars})"
     return True, f"OK: {len(meta)} chars"
+
+
+def detect_first_person_anecdotes(text: str) -> list[str]:
+    """Détecte les phrases à la 1re personne suggérant expérience vécue.
+
+    Returns:
+        Liste des extraits de texte qui matchent (max 80 chars chacun).
+    """
+    text_lower = text.lower()
+    found: list[str] = []
+    for pattern in FIRST_PERSON_ANECDOTE_PATTERNS:
+        for match in re.finditer(pattern, text_lower):
+            start = max(0, match.start() - 20)
+            end = min(len(text), match.end() + 40)
+            snippet = text[start:end].strip().replace("\n", " ")
+            found.append(snippet)
+    return found
