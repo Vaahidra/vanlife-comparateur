@@ -59,6 +59,10 @@ def article_to_markdown(
         "tags": article.get("tags", []),
     }
 
+    # Featured image (chemin web local si fetché par image_handler)
+    if article.get("featured_image"):
+        frontmatter["featured_image"] = article["featured_image"]
+
     # Add comparatif/test fields conditionally
     if article_type == "comparatif" and topic.get("products_to_compare"):
         frontmatter["products_compared"] = topic["products_to_compare"]

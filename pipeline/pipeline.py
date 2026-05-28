@@ -49,7 +49,7 @@ def run(
     Returns:
         Nombre d'articles générés avec succès.
     """
-    from modules import content_writer, nuxt_publisher, quality_check, topics, notify
+    from modules import content_writer, nuxt_publisher, quality_check, topics, notify, image_handler
 
     # Validation env (warnings seulement, mode mock OK si pas de clé)
     validate_env(strict=False)
@@ -107,7 +107,17 @@ def run(
         else:
             publish_this = publish
 
-        # 4. Markdown + écriture
+        # 4. Image featured (Pexels) — fallback gracieux si pas de clé
+        slug = article["slug"]
+        featured_image = image_handler.fetch_for_article(
+            slug=slug,
+            query=article["title"],
+            category=topic.get("category"),
+        )
+        if featured_image:
+            article["featured_image"] = featured_image
+
+        # 5. Markdown + écriture
         markdown = nuxt_publisher.article_to_markdown(
             article=article,
             topic=topic,
@@ -115,7 +125,6 @@ def run(
             draft=not publish_this,
         )
 
-        slug = article["slug"]
         file_path = nuxt_publisher.write_article_file(slug=slug, markdown=markdown)
         nuxt_publisher.write_article_to_outputs(slug=slug, markdown=markdown)
 
