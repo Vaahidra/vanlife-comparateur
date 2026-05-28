@@ -27,7 +27,19 @@ load_dotenv(ENV_PATH)
 class Settings:
     # IA
     gemini_api_key: Optional[str] = field(default_factory=lambda: os.getenv("GEMINI_API_KEY"))
+    gemini_model: str = field(default_factory=lambda: os.getenv("GEMINI_MODEL", "gemini-2.5-flash"))
     groq_api_key: Optional[str] = field(default_factory=lambda: os.getenv("GROQ_API_KEY"))
+    groq_model: str = field(default_factory=lambda: os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile"))
+
+    # Path racine du frontend Nuxt (pour écrire les .md d'article)
+    frontend_content_dir: Path = field(
+        default_factory=lambda: Path(
+            os.getenv(
+                "FRONTEND_CONTENT_DIR",
+                str(Path(__file__).resolve().parent.parent / "frontend" / "content" / "articles"),
+            )
+        )
+    )
 
     # Publication (Git + Vercel)
     github_token: Optional[str] = field(default_factory=lambda: os.getenv("GITHUB_TOKEN"))
