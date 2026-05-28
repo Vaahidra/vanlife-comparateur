@@ -1,0 +1,102 @@
+# Decap CMS — Configuration
+# Docs: https://decapcms.org/docs/configuration-options/
+
+# ============================================
+# Backend
+# ============================================
+# Pour la PROD (Vercel) → backend GitHub + OAuth proxy
+# Pour le LOCAL → utiliser `npx decap-server` puis backend: proxy
+#
+# À configurer en Phase 1 :
+#   1. Créer une OAuth App GitHub : https://github.com/settings/developers
+#   2. Déployer un OAuth proxy (Vercel function ou render.com)
+#   3. Renseigner repo + branch ci-dessous
+backend:
+  name: github
+  repo: USERNAME/vanlife-comparateur          # TODO: remplacer après création repo
+  branch: main
+  base_url: https://oauth-proxy.example.com   # TODO: URL OAuth proxy déployé
+
+# Pour développer en local sans OAuth :
+#   1. cd frontend && npx decap-server
+#   2. Décommenter le bloc ci-dessous et commenter le backend github
+# backend:
+#   name: proxy
+#   proxy_url: http://localhost:8081/api/v1
+#   branch: main
+
+# ============================================
+# Media
+# ============================================
+media_folder: "frontend/public/images"
+public_folder: "/images"
+
+# Branche dédiée pour les drafts (Editorial Workflow)
+publish_mode: editorial_workflow
+
+# Langue UI
+locale: 'fr'
+
+# ============================================
+# Collections
+# ============================================
+collections:
+  # -------- Articles -----------------------
+  - name: "articles"
+    label: "Articles"
+    label_singular: "Article"
+    folder: "frontend/content/articles"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    preview_path: "articles/{{slug}}"
+    summary: "{{title}} — {{type}} — {{published_at}}"
+    sortable_fields: ['published_at', 'updated_at', 'title']
+    view_filters:
+      - label: "Brouillons uniquement"
+        field: draft
+        pattern: true
+      - label: "Comparatifs"
+        field: type
+        pattern: comparatif
+      - label: "Tests produit"
+        field: type
+        pattern: test_produit
+      - label: "Guides d'achat"
+        field: type
+        pattern: guide_achat
+    fields:
+      - { label: "Titre", name: "title", widget: "string" }
+      - { label: "Meta description", name: "description", widget: "string", hint: "Max 160 caractères, optimisé SEO" }
+      - { label: "Slug", name: "slug", widget: "string" }
+      - { label: "Type d'article", name: "type", widget: "select", options: ["comparatif", "test_produit", "guide_achat"] }
+      - { label: "Catégorie", name: "category", widget: "select", options: ["energie", "cuisine", "confort", "securite", "amenagement", "guides"] }
+      - { label: "Mot-clé focus", name: "keyword_focus", widget: "string" }
+      - { label: "Brouillon", name: "draft", widget: "boolean", default: true, hint: "Coché = pas visible sur le site" }
+      - { label: "Auteur", name: "author", widget: "string", default: "Wahid" }
+      - { label: "Date publication", name: "published_at", widget: "datetime" }
+      - { label: "Dernière mise à jour", name: "updated_at", widget: "datetime", required: false }
+      - { label: "Image principale", name: "featured_image", widget: "image", required: false }
+      - { label: "Produits comparés", name: "products_compared", widget: "list", required: false }
+      - { label: "Produit testé", name: "product_tested", widget: "string", required: false }
+      - { label: "Contenu", name: "body", widget: "markdown" }
+
+  # -------- Pages statiques ----------------
+  - name: "pages"
+    label: "Pages"
+    files:
+      - file: "frontend/content/about.md"
+        label: "À propos"
+        name: "about"
+        fields:
+          - { label: "Titre", name: "title", widget: "string" }
+          - { label: "Contenu", name: "body", widget: "markdown" }
+
+      - file: "frontend/content/index.md"
+        label: "Accueil"
+        name: "index"
+        fields:
+          - { label: "Titre", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "string" }
+          - { label: "Contenu", name: "body", widget: "markdown" }

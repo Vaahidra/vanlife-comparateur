@@ -1,0 +1,18 @@
+{
+  "topics": [],
+  "_schema_example": {
+    "id": "uuid-v4",
+    "keyword": "meilleure batterie lithium 100ah vanlife",
+    "type": "comparatif",
+    "category": "energie",
+    "difficulty": "medium",
+    "trend": "stable",
+    "estimated_volume": 1200,
+    "priority": 1,
+    "status": "queued",
+    "products_to_compare": ["Renogy 100Ah", "Victron 100Ah", "Battle Born 100Ah"],
+    "created_at": "2026-05-22"
+  },
+  "_status_values": ["queued", "in_progress", "pending_review", "ready_to_publish", "published"],
+  "_type_values": ["comparatif", "test_produit", "guide_achat"]
+}

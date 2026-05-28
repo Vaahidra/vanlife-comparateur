@@ -1,0 +1,36 @@
+# Secrets
+.env
+*.env.local
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+
+# Pipeline outputs (générés, pas versionnés)
+pipeline/outputs/
+pipeline/data/products_db.json
+pipeline/logs/
+*.log
+
+# Node / Nuxt
+node_modules/
+.nuxt/
+.output/
+.nitro/
+.cache/
+dist/
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# Vercel
+.vercel

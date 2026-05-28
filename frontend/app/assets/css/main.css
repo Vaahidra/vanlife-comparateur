@@ -1,0 +1,158 @@
+/* Tailwind CSS v4 — config inline via @theme */
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  /* Palette vanlife : terre (sand) + anthracite */
+  --color-sand-50: #faf7f2;
+  --color-sand-100: #f5efe4;
+  --color-sand-200: #ebdcc4;
+  --color-sand-300: #dcc599;
+  --color-sand-400: #caa66c;
+  --color-sand-500: #b88c4f;
+  --color-sand-600: #a07640;
+  --color-sand-700: #82603a;
+  --color-sand-800: #6b4f33;
+  --color-sand-900: #58422c;
+
+  --color-anthracite-50: #f6f7f8;
+  --color-anthracite-100: #eceef0;
+  --color-anthracite-200: #d5dade;
+  --color-anthracite-300: #b1bac1;
+  --color-anthracite-400: #86949e;
+  --color-anthracite-500: #677683;
+  --color-anthracite-600: #525e6b;
+  --color-anthracite-700: #434c57;
+  --color-anthracite-800: #3a414a;
+  --color-anthracite-900: #2d3142;
+  --color-anthracite-950: #1a1d29;
+
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-serif: "Crimson Pro", Georgia, serif;
+}
+
+/* Inclut scan du contenu (pas seulement les composants Vue) */
+@source "../../../content/**/*.md";
+
+@layer base {
+  html {
+    color: var(--color-anthracite-800);
+    background-color: var(--color-sand-50);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: var(--font-sans);
+  }
+
+  ::selection {
+    background-color: var(--color-sand-300);
+    color: var(--color-anthracite-900);
+  }
+}
+
+@layer components {
+  /* CTA d'affiliation (sobre) */
+  .cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    background-color: var(--color-anthracite-900);
+    color: var(--color-sand-50);
+    font-weight: 600;
+    border-radius: 0.375rem;
+    text-decoration: none;
+    transition: background-color 0.15s;
+  }
+  .cta-button:hover {
+    background-color: var(--color-anthracite-800);
+  }
+
+  .cta-button-amazon {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    background-color: #ea580c;
+    color: white;
+    font-weight: 600;
+    border-radius: 0.375rem;
+    text-decoration: none;
+    transition: background-color 0.15s;
+  }
+  .cta-button-amazon:hover {
+    background-color: #c2410c;
+  }
+
+  .article-container {
+    max-width: 64rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .article-container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .article-container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+
+  .transparency-note {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    border-left: 4px solid var(--color-sand-400);
+    background-color: var(--color-sand-100);
+    font-size: 0.875rem;
+    color: var(--color-anthracite-700);
+    font-style: italic;
+  }
+}
+
+/* Typography plugin — couleurs vanlife */
+@layer base {
+  .prose {
+    --tw-prose-body: var(--color-anthracite-800);
+    --tw-prose-headings: var(--color-anthracite-900);
+    --tw-prose-links: var(--color-sand-700);
+    --tw-prose-bold: var(--color-anthracite-900);
+    --tw-prose-quotes: var(--color-anthracite-700);
+    --tw-prose-bullets: var(--color-sand-500);
+    --tw-prose-counters: var(--color-sand-600);
+    --tw-prose-hr: var(--color-sand-200);
+    --tw-prose-quote-borders: var(--color-sand-400);
+    --tw-prose-code: var(--color-anthracite-900);
+    --tw-prose-pre-bg: var(--color-anthracite-900);
+    --tw-prose-pre-code: var(--color-sand-100);
+    --tw-prose-th-borders: var(--color-sand-300);
+    --tw-prose-td-borders: var(--color-sand-200);
+  }
+
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4 {
+    font-family: var(--font-serif);
+  }
+
+  .prose a {
+    text-decoration: underline;
+    text-decoration-color: var(--color-sand-300);
+    text-underline-offset: 3px;
+    font-weight: 500;
+  }
+  .prose a:hover {
+    color: var(--color-sand-800);
+    text-decoration-color: var(--color-sand-700);
+  }
+}
