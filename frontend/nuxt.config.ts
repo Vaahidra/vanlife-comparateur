@@ -64,6 +64,17 @@ export default defineNuxtConfig({
     payloadExtraction: true,
   },
 
+  // Hébergement : Cloudflare Pages en mode STATIC (nuxt generate)
+  // → tous les routes pre-rendered au build, pas besoin de D1 runtime ni nodejs_compat.
+  // Compatible CDN pure (CF Pages, GitHub Pages, Netlify, n'importe quoi).
+  nitro: {
+    preset: 'static',
+    prerender: {
+      crawlLinks: true,
+      failOnError: false,
+    },
+  },
+
   app: {
     head: {
       htmlAttrs: { lang: 'fr' },
