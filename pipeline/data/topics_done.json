@@ -50,6 +50,23 @@
       "updated_at": "2026-05-28T15:24:50.668044+00:00",
       "published_at": "2026-05-28T15:25:32.292806+00:00",
       "article_url": "/Users/vaahidra/vanlife-comparateur/frontend/content/articles/convertisseur-pur-sinus-12v-220v-vanlife-comparatif.md"
+    },
+    {
+      "id": "17112ebe-f6ce-4394-a433-c9a249667b50",
+      "status": "published",
+      "created_at": "2026-05-28T10:06:27.667089+00:00",
+      "keyword": "tracker gps fourgon longue duree batterie",
+      "type": "comparatif",
+      "category": "securite",
+      "products_to_compare": [
+        "Quadtrak Q-Tracker",
+        "Invoxia GPS Tracker",
+        "Trackimo 3G"
+      ],
+      "priority": 2,
+      "updated_at": "2026-05-29T10:43:19.715904+00:00",
+      "published_at": "2026-05-29T10:44:01.587252+00:00",
+      "article_url": "/Users/vaahidra/vanlife-comparateur/frontend/content/articles/comparatif-trackers-gps-longue-duree-fourgon-amenage.md"
     }
   ]
 }
